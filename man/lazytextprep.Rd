@@ -29,4 +29,10 @@ Takes a text variable from a dataframe and runs a number of standard text prepro
 @export
 
 @import textclean
+@import dplyr
+@import tidytext
+@import textstem
+@import SnowballC
+@import tibble
+@import tm
 }
