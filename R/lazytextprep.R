@@ -12,6 +12,14 @@
 #'  @return the dataframe with a cleaned and/or tokenized text variable
 #'  
 #'  @export
+#'  
+#'  @import textclean
+#'  @import dplyr
+#'  @import tidytext
+#'  @import textstem
+#'  @import SnowballC
+#'  @import tibble
+#'  @import tm
 
 lazytextprep <- function(textdata, textvar, type = "docs", language = "english", outdir = NA, outname = "/transformations.txt") {
 
