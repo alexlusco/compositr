@@ -36,3 +36,8 @@ Takes a text variable from a dataframe and runs a number of standard text prepro
 @import tibble
 @import tm
 }
+\examples{
+\dontrun{
+results <- textprep(df, "text", language = "english", outdir = "~/Desktop/files")
+}
+}

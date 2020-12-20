@@ -21,4 +21,4 @@ Imports:
     SnowballC,
     tibble,
     tm,
-    data.table
+    janeaustenr

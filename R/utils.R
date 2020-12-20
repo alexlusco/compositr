@@ -65,4 +65,15 @@ replace_misspelling <- function(x, ...){s
   out
 }
 
+#' Sample data from \pkg{janeaustenr}
+#' 
+#' @export
+#' 
+#' @examples
+#' \dontrun{
+#' austen_books <- get_sample_data()
+#' }
 
+get_sample_data <- function(x){
+  data <- janeaustenr::austen_books()
+}

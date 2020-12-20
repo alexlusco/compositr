@@ -20,6 +20,11 @@
 #'  @import SnowballC
 #'  @import tibble
 #'  @import tm
+#'  
+#' @examples
+#' \dontrun{
+#' results <- textprep(df, "text", language = "english", outdir = "~/Desktop/files")
+#' }
 
 textprep <- function(textdata, textvar, type = "docs", language = "english", outdir = NA, outname = "/transformations.txt") {
 
