@@ -20,4 +20,5 @@ Imports:
     textstem,
     SnowballC,
     tibble,
-    tm
+    tm,
+    data.table

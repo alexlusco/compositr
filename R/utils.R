@@ -5,7 +5,29 @@ upper_first_letter <- function(x){
 
 na_removal <- function(x) x[!is.na(x)]
 
-replace_misspelling <- function(x, ...){
+#' Replace Misspelled Words
+#' 
+#' Replace misspelled words with their most likely replacement.  This function 
+#' uses \pkg{hunspell} in the backend.  \pkg{hunspell}  must be installed in 
+#' order to use this feature.
+#' 
+#' @param x A character vector.
+#' @param \ldots ignored..
+#' @return Returns a vector of strings with misspellings replaced.
+#' @note The function splits the string apart into tokens for speed
+#' optimization.  After the replacement occurs the strings are pasted back
+#' together.  The strings are not guaranteed to retain exact spacing of the
+#' original.
+#'
+#' @author Surin Space and Tyler Rinker <tyler.rinker@@gmail.com>.
+#' @examples
+#' \dontrun{
+#' bad_string <- c("I cant spelll rigtt noow.", '', NA, 
+#'     'Thiss is aslo mispelled?', 'this is 6$ and 38 cents in back2back!')
+#' replace_misspelling(bad_string)
+#' }
+#' 
+replace_misspelling <- function(x, ...){s
   
   lower <- text <- replacement <- is_cap <- final <- element_id <- token_id <- NULL
   
@@ -42,3 +64,5 @@ replace_misspelling <- function(x, ...){
   out[is_na] <- NA
   out
 }
+
+

@@ -39,7 +39,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
   #print("Fixing misspelled words...")
 
-  #textdata[[textvar]] <- lazycleanr::replace_misspelling(textdata[[textvar]]) #fix spelling mistakes
+  #textdata[[textvar]] <- replace_misspelling(textdata[[textvar]]) #fix spelling mistakes
 
   #transformations[3] <- "Fixed misspelled words"
 
