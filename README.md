@@ -8,3 +8,6 @@ To install and use this package:
 ```devtools::install_github("alexlusco/compositr")```
 
 ![](https://github.com/alexlusco/compositr/blob/master/compositor.jpg)
+
+Clean/tokenization decision tree
+![](https://github.com/alexlusco/compositr/blob/master/compositr_decision_tree.png)
