@@ -1,4 +1,4 @@
-Package: lazycleanr
+Package: compositr
 Title: Efficient tools for preprocessing text data in R.
 Version: 0.0.0.9000
 Authors@R: 
