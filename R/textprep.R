@@ -31,29 +31,57 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
   transformations <- list()
 
-  print("Removing non-UTF8 characters...")
-
-  textdata[[textvar]] <- iconv(textdata[[textvar]],  to="UTF-8", sub="") #remove non-UTF8 chars
-
-  transformations[1] <- "Removed non-UTF8 characters"
-
-  print("Fixing comma spaces...")
-
-  textdata[[textvar]] <- textclean::add_comma_space(textdata[[textvar]]) #add space after commas if missing
-
-  transformations[2] <- "Fixed comma spaces"
-
-  #print("Fixing misspelled words...")
-
-  #textdata[[textvar]] <- replace_misspelling(textdata[[textvar]]) #fix spelling mistakes
-
-  #transformations[3] <- "Fixed misspelled words"
-
-  print("Removing HTML tags and symbols...")
-
-  textdata[[textvar]] <- textclean::replace_html(textdata[[textvar]]) #remove HTML tags/symbols, e.g., <bold>
-
-  transformations[4] <- "Removed HTML tags and symbols"
+  if(type == "docs"){
+    ask <- askYesNo("Do you want to remove non-UTF8 characters?")
+    
+    if(ask == TRUE){
+      
+      print("Removing non-UTF8 characters...")
+      
+      textdata[[textvar]] <- iconv(textdata[[textvar]],  to="UTF-8", sub="") #remove non-UTF8 chars
+      
+      transformations[1] <- "Removed non-UTF8 characters"
+    }
+  }
+  
+  if(type == "docs"){
+    ask <- askYesNo("Do you want to insert missing comma spaces?")
+    
+    if(ask == TRUE){
+      
+      print("Inserting missing comma spaces...")
+      
+      textdata[[textvar]] <- textclean::add_comma_space(textdata[[textvar]]) #add space after commas if missing
+      
+      transformations[2] <- "Insert missing comma spaces"
+    }
+  }
+  
+  if(type == "docs"){
+    ask <- askYesNo("Do you want to replace misspelled words with their most likely replacement?")
+    
+    if(ask == TRUE){
+      
+      print("Fixing misspelled words...")
+      
+      textdata[[textvar]] <- replace_misspelling(textdata[[textvar]]) #fix spelling mistakes
+      
+      transformations[3] <- "Replaced misspelled words with their most likely replacement"
+    }
+  }
+  
+  if(type == "docs"){
+    ask <- askYesNo("Do you want to remove HTML tags and symbols?")
+    
+    if(ask == TRUE){
+      
+      print("Removing HTML tags and symbols...")
+      
+      textdata[[textvar]] <- textclean::replace_html(textdata[[textvar]]) #remove HTML tags/symbols, e.g., <bold>
+      
+      transformations[4] <- "Removed HTML tags and symbols"
+    }
+  }
 
   if(type == "docs"){
     ask <- askYesNo("Do you want to convert all text to lower case?")
@@ -206,6 +234,26 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
           }
         }
       }
+      
+      if(ask == TRUE){
+        ask <- askYesNo("Do you want to cast your text data into a DocumentTermMatrix?")
+        
+        if(ask == TRUE){
+          
+          ask <- menu(c(glue("{colnames(textdata)}")), title = "What is the name of your document variable?")
+          
+          if(ask == TRUE){
+          textdata <- {{textdata}} %>%
+            dplyr::count(.[[{{ask}}]], word) %>%
+            dplyr::rename(document = {{ask}},
+                   term = word,
+                   value = n) %>%
+            tidytext::cast_dtm(document, term, value)
+          
+          transformations[15] <- "Cast text data as DocumentTermMatrix"
+          }
+        }
+      }
 
       else{
         ask <- askYesNo("Do you want to tokenize at the sentence level?")
@@ -217,7 +265,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
           textdata <- {{textdata}} %>%
             tidytext::unnest_tokens(sentences, {{textvar}}, token = "sentences") #tokenizer (sentences)
 
-          transformations[15] <- "Tokenized text (sentence level)"
+          transformations[16] <- "Tokenized text (sentence level)"
         }
       }
     }

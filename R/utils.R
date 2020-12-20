@@ -27,7 +27,7 @@ na_removal <- function(x) x[!is.na(x)]
 #' replace_misspelling(bad_string)
 #' }
 #' 
-replace_misspelling <- function(x, ...){s
+replace_misspelling <- function(x, ...){
   
   lower <- text <- replacement <- is_cap <- final <- element_id <- token_id <- NULL
   
