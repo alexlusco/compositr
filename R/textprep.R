@@ -1,6 +1,6 @@
-#' clean and/or tokenize your text data in a single function
+#'  clean and/or tokenize your text data in a single function
 #' 
-#' Takes a text variable from a dataframe and runs a number of standard text preprocessing procedures on it, like removing html tags, removing stopwords, converting to lowercase. Preprocessing techniques and tokenization are applied in an interactive yes/no console session with the user. A list of the procedures used are saved in a local .txt file in directory specified by the user.
+#'  Takes a text variable from a dataframe and runs a number of standard text preprocessing procedures on it, like removing html tags, removing stopwords, converting to lowercase. Preprocessing techniques and tokenization are applied in an interactive yes/no console session with the user. A list of the procedures used are saved in a local .txt file in directory specified by the user.
 #' 
 #'  @param textdata a dataframe containing a text variable
 #'  @param textvar the name of the column in the first param containing text
@@ -21,10 +21,10 @@
 #'  @import tibble
 #'  @import tm
 #'  
-#' @examples
-#' \dontrun{
-#' results <- textprep(df, "text", language = "english", outdir = "~/Desktop/files")
-#' }
+#'  @examples
+#'  \dontrun{
+#'  results <- textprep(df, "text", language = "english", outdir = "~/Desktop/files")
+#'  }
 
 textprep <- function(textdata, textvar, type = "docs", language = "english", outdir = NA, outname = "/transformations.txt") {
 
