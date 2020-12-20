@@ -11,7 +11,7 @@
 #'  
 #'  @return the dataframe with a cleaned and/or tokenized text variable
 #'  
-#'  @export
+#'  @export lazytextprep
 #'  
 #'  @import textclean
 #'  @import dplyr
@@ -37,11 +37,11 @@ lazytextprep <- function(textdata, textvar, type = "docs", language = "english",
 
   transformations[2] <- "Fixed comma spaces"
 
-  print("Fixing misspelled words...")
+  #print("Fixing misspelled words...")
 
-  textdata[[textvar]] <- lazycleanr::replace_misspelling(textdata[[textvar]]) #fix spelling mistakes
+  #textdata[[textvar]] <- lazycleanr::replace_misspelling(textdata[[textvar]]) #fix spelling mistakes
 
-  transformations[3] <- "Fixed misspelled words"
+  #transformations[3] <- "Fixed misspelled words"
 
   print("Removing HTML tags and symbols...")
 

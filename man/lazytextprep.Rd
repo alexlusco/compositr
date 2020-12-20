@@ -26,7 +26,7 @@ Takes a text variable from a dataframe and runs a number of standard text prepro
 
 @return the dataframe with a cleaned and/or tokenized text variable
 
-@export
+@export lazytextprep
 
 @import textclean
 @import dplyr
