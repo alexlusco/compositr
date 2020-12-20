@@ -65,7 +65,7 @@ replace_misspelling <- function(x, ...){s
   out
 }
 
-#' Sample data from \pkg{janeaustenr}
+#' Example data from \pkg{janeaustenr}
 #' 
 #' @export
 #' 
@@ -74,6 +74,6 @@ replace_misspelling <- function(x, ...){s
 #' austen_books <- get_sample_data()
 #' }
 
-get_sample_data <- function(x){
+get_austen_data <- function(x){
   data <- janeaustenr::austen_books()
 }
