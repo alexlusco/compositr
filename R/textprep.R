@@ -171,7 +171,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
           stop.words <- tibble::tibble(word = tm::stopwords(language))
 
           textdata <- {{textdata}} %>%
-            tidytext::anti_join(stop.words, by = "word") #remove stopwords in specified language
+            dplyr::anti_join(stop.words, by = "word") #remove stopwords in specified language
 
           transformations[12] <- glue::glue("Removed {language} stopwords")
         }
