@@ -161,7 +161,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
   }
 
   if(type == "docs"){
-    ask <- askYesNo("Do you want to remove extra extra white space?")
+    ask <- askYesNo("Do you want to remove extra white space?")
 
     if(ask == TRUE){
 
