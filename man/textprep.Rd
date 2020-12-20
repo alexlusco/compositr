@@ -35,9 +35,10 @@ Takes a text variable from a dataframe and runs a number of standard text prepro
 @import SnowballC
 @import tibble
 @import tm
-}
-\examples{
+@import magrittr
+
+@examples
 \dontrun{
-results <- textprep(df, "text", language = "english", outdir = "~/Desktop/files")
-}
+ results <- textprep(df, "text", language = "english", outdir = "~/Desktop/files")
+ }
 }

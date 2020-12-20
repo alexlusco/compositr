@@ -20,7 +20,7 @@
 #'  @import SnowballC
 #'  @import tibble
 #'  @import tm
-#'  @import maggritr
+#'  @import magrittr
 #'  
 #'  @examples
 #'  \dontrun{

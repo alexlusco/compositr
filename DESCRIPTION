@@ -16,7 +16,7 @@ RoxygenNote: 7.1.1
 Imports: 
     textclean,
     dplyr,
-    maggritr,
+    magrittr,
     tidytext,
     textstem,
     SnowballC,
