@@ -40,7 +40,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
   
   Sys.sleep(5)
   
-  cat("Let's get started!")
+  cat(crayon::green("Let's get started!\n\n"))
   
   Sys.sleep(2)
   
@@ -49,7 +49,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
     
     if(ask == TRUE){
       
-      cat("Removing non-UTF8 characters...")
+      cat("Removing non-UTF8 characters...\n")
       
       textdata[[textvar]] <- iconv(textdata[[textvar]],  to="UTF-8", sub="") #remove non-UTF8 chars
       
@@ -62,7 +62,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
     
     if(ask == TRUE){
       
-      cat("Inserting missing comma spaces...")
+      cat("Inserting missing comma spaces...\n")
       
       textdata[[textvar]] <- textclean::add_comma_space(textdata[[textvar]]) #add space after commas if missing
       
@@ -75,7 +75,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
     
     if(ask == TRUE){
       
-      cat("Fixing misspelled words...")
+      cat("Fixing misspelled words...\n")
       
       textdata[[textvar]] <- replace_misspelling(textdata[[textvar]]) #fix spelling mistakes
       
@@ -88,7 +88,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
     
     if(ask == TRUE){
       
-      cat("Removing HTML tags and symbols...")
+      cat("Removing HTML tags and symbols...\n")
       
       textdata[[textvar]] <- textclean::replace_html(textdata[[textvar]]) #remove HTML tags/symbols, e.g., <bold>
       
@@ -101,7 +101,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      cat("Converting to lower case...")
+      cat("Converting to lower case...\n")
 
       textdata[[textvar]] <- tolower(textdata[[textvar]]) #convert text to lower case
 
@@ -112,7 +112,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
       if(ask == TRUE){
 
-        cat("Converting to upper case...")
+        cat("Converting to upper case...\n")
 
         textdata[[textvar]] <- toupper(textdata[[textvar]]) #convert text to upper case
 
@@ -126,7 +126,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      cat("Removing URLs from text...")
+      cat("Removing URLs from text...\n")
 
       textdata[[textvar]] <- textclean::replace_url(textdata[[textvar]]) #remove URLs from text
 
@@ -135,11 +135,11 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
   }
 
   if(type == "docs"){
-    ask <- askYesNo("Do you want to remove numbers?")
+    ask <- askYesNo("Do you want to remove numbers?\n")
 
     if(ask == TRUE){
 
-      cat("Removing numbers from text...")
+      cat("Removing numbers from text...\n")
 
       textdata[[textvar]] <- gsub("[0-9+]", "", textdata[[textvar]]) #remove numbers from text
 
@@ -152,7 +152,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      cat("Removing punctuation from text...")
+      cat("Removing punctuation from text...\n")
 
       textdata[[textvar]] <- gsub("[[:punct:]]+", "", textdata[[textvar]]) #remove punctutation from text
 
@@ -165,7 +165,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      cat("Replacing elongated words...")
+      cat("Replacing elongated words...\n")
 
       textdata[[textvar]] <- textclean::replace_word_elongation(textdata[[textvar]]) #fix word elongation
 
@@ -178,7 +178,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      cat("Removing extra white space...")
+      cat("Removing extra white space...\n")
 
       textdata[[textvar]] <- trimws(textdata[[textvar]]) #trim trailing/leading white space
       textdata[[textvar]] <- textclean::replace_white(textdata[[textvar]]) #replace one or more white space chars with single space
@@ -195,7 +195,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
       if(ask == TRUE){
 
-        cat("Tokenizing text (word level)...")
+        cat("Tokenizing text (word level)...\n")
 
         textdata <- {{textdata}} %>%
           tidytext::unnest_tokens(word, {{textvar}}, token = "words") #tokenizer (words)
@@ -208,7 +208,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
         if(ask == TRUE){
 
-          cat(glue::glue("Removing {language} stop words from text..."))
+          cat(glue::glue("Removing {language} stop words from text...\n"))
 
           stop.words <- tibble::tibble(word = tm::stopwords(language))
 
@@ -224,7 +224,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
         if(ask == TRUE){
 
-          cat("Stemming words...")
+          cat("Stemming words...\n")
 
           textdata <- {{textdata}} %>%
             dplyr::mutate(word = SnowballC::wordStem(word)) #stem words
@@ -237,7 +237,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
           if(ask == TRUE){
 
-            cat("Lemmatizing words...")
+            cat("Lemmatizing words...\n")
 
             textdata <- {{textdata}} %>%
               dplyr::mutate(word = textstem::lemmatize_words(word)) #lemmatize words
@@ -311,7 +311,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
       warning("To save a list of operations as a separate .txt file, you need to specify an output directory")})
   
-  cat(paste(crayon::green("Textprep has succesfully completed!\n"), crayon::blue("Below is a list of transformations that were conducted.\n"), crayon::red("If you specified an outdir, this list has also been saved locally on your harddrive.\n")))
+  cat(paste(crayon::green("Textprep is now complete!\n"), crayon::blue("Below is a list of transformations that were conducted:\n"), sep = ""))
   
   return({{unlist(transformations)}})
 
