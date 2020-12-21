@@ -24,7 +24,7 @@ At minimum, ```textprep``` takes a dataframe with text variable. If you plan to 
 
 ## Example application
 
-```{r}
+```r
 library(compositr)
 
 austen_books <- get_austen_data()
