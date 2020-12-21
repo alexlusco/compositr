@@ -21,6 +21,7 @@
 #'  @import tibble
 #'  @import tm
 #'  @import magrittr
+#'  @import crayon
 #'  
 #'  @examples
 #'  \dontrun{
@@ -30,13 +31,25 @@
 textprep <- function(textdata, textvar, type = "docs", language = "english", outdir = NA, outname = "/transformations.txt") {
 
   transformations <- list()
-
+  
+  cat(paste(crayon::green("Welcome")), crayon::blue("to"), crayon::red("compositr!"), "A convenient (lazy?), easy-to-use one stop shop\nfor all (okay, most?) of your text preprocessing needs!\n\n")
+  
+  cat(paste("You'll be asked a number of", crayon::green("questions"), "here in the console about what \noperations you'd like to apply to your text data.\n\n"))
+  
+  cat(paste("To answer yes/no questions, simply type", crayon::blue("'Yes', 'yes'"), "or", crayon::blue("'y'"), "to answer yes, \nand type", crayon::red("'No', 'no'"), "or", crayon::red("'n'"), "to answer no. You can exit the session at any \ntime by pressing the escape key.\n\n"))
+  
+  Sys.sleep(5)
+  
+  cat("Let's get started!")
+  
+  Sys.sleep(2)
+  
   if(type == "docs"){
     ask <- askYesNo("Do you want to remove non-UTF8 characters?")
     
     if(ask == TRUE){
       
-      print("Removing non-UTF8 characters...")
+      cat("Removing non-UTF8 characters...")
       
       textdata[[textvar]] <- iconv(textdata[[textvar]],  to="UTF-8", sub="") #remove non-UTF8 chars
       
@@ -49,7 +62,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
     
     if(ask == TRUE){
       
-      print("Inserting missing comma spaces...")
+      cat("Inserting missing comma spaces...")
       
       textdata[[textvar]] <- textclean::add_comma_space(textdata[[textvar]]) #add space after commas if missing
       
@@ -62,7 +75,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
     
     if(ask == TRUE){
       
-      print("Fixing misspelled words...")
+      cat("Fixing misspelled words...")
       
       textdata[[textvar]] <- replace_misspelling(textdata[[textvar]]) #fix spelling mistakes
       
@@ -75,7 +88,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
     
     if(ask == TRUE){
       
-      print("Removing HTML tags and symbols...")
+      cat("Removing HTML tags and symbols...")
       
       textdata[[textvar]] <- textclean::replace_html(textdata[[textvar]]) #remove HTML tags/symbols, e.g., <bold>
       
@@ -88,7 +101,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      print("Converting to lower case...")
+      cat("Converting to lower case...")
 
       textdata[[textvar]] <- tolower(textdata[[textvar]]) #convert text to lower case
 
@@ -99,7 +112,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
       if(ask == TRUE){
 
-        print("Converting to upper case...")
+        cat("Converting to upper case...")
 
         textdata[[textvar]] <- toupper(textdata[[textvar]]) #convert text to upper case
 
@@ -113,7 +126,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      print("Removing URLs from text...")
+      cat("Removing URLs from text...")
 
       textdata[[textvar]] <- textclean::replace_url(textdata[[textvar]]) #remove URLs from text
 
@@ -126,7 +139,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      print("Removing numbers from text...")
+      cat("Removing numbers from text...")
 
       textdata[[textvar]] <- gsub("[0-9+]", "", textdata[[textvar]]) #remove numbers from text
 
@@ -139,7 +152,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      print("Removing punctuation from text...")
+      cat("Removing punctuation from text...")
 
       textdata[[textvar]] <- gsub("[[:punct:]]+", "", textdata[[textvar]]) #remove punctutation from text
 
@@ -152,7 +165,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      print("Replacing elongated words...")
+      cat("Replacing elongated words...")
 
       textdata[[textvar]] <- textclean::replace_word_elongation(textdata[[textvar]]) #fix word elongation
 
@@ -165,7 +178,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
     if(ask == TRUE){
 
-      print("Removing extra white space...")
+      cat("Removing extra white space...")
 
       textdata[[textvar]] <- trimws(textdata[[textvar]]) #trim trailing/leading white space
       textdata[[textvar]] <- textclean::replace_white(textdata[[textvar]]) #replace one or more white space chars with single space
@@ -182,7 +195,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
       if(ask == TRUE){
 
-        print("Tokenizing text (word level)...")
+        cat("Tokenizing text (word level)...")
 
         textdata <- {{textdata}} %>%
           tidytext::unnest_tokens(word, {{textvar}}, token = "words") #tokenizer (words)
@@ -195,7 +208,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
         if(ask == TRUE){
 
-          print(glue::glue("Removing {language} stop words from text..."))
+          cat(glue::glue("Removing {language} stop words from text..."))
 
           stop.words <- tibble::tibble(word = tm::stopwords(language))
 
@@ -211,7 +224,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
         if(ask == TRUE){
 
-          print("Stemming words...")
+          cat("Stemming words...")
 
           textdata <- {{textdata}} %>%
             dplyr::mutate(word = SnowballC::wordStem(word)) #stem words
@@ -224,7 +237,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
           if(ask == TRUE){
 
-            print("Lemmatizing words...")
+            cat("Lemmatizing words...")
 
             textdata <- {{textdata}} %>%
               dplyr::mutate(word = textstem::lemmatize_words(word)) #lemmatize words
@@ -240,9 +253,10 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
         
         if(ask == TRUE){
           
-          ask <- menu(c(glue("{colnames(textdata)}")), title = "What is the name of your document variable?")
+          cols <- textdata %>%
+            select(-word)
           
-          print("Casting text data into DocumentTermMatrix...")
+          ask <- menu(c(glue("{colnames(cols)}")), title = "What is the name of your document variable?")
           
           textdata <- {{textdata}} %>%
             dplyr::count(.[[{{ask}}]], word) %>%
@@ -252,7 +266,28 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
             tidytext::cast_dtm(document, term, value)
           
           transformations[15] <- "Cast text data as DocumentTermMatrix"
+        }
+        
+        else({
+          ask <- askYesNo("Do you want to cast your text data into a DocumentFeatureMatrix?")
+          
+          if(ask == TRUE){
+            
+            cols <- textdata %>%
+              select(-word)
+            
+            ask <- menu(c(glue("{colnames(cols)}")), title = "What is the name of your document variable?")
+            
+            textdata <- {{textdata}} %>%
+              dplyr::count(.[[{{ask}}]], word) %>%
+              dplyr::rename(document = {{ask}},
+                            term = word,
+                            value = n) %>%
+              tidytext::cast_dfm(document, term, value)
+            
+            transformations[17] <- "Cast text data as DocumentFeatureMatrix"
           }
+        })
         }
       }
 
@@ -261,23 +296,24 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
         if(ask == TRUE){
 
-          print("Tokenizing text (sentence) level)...")
-
           textdata <- {{textdata}} %>%
             tidytext::unnest_tokens(sentences, {{textvar}}, token = "sentences") #tokenizer (sentences)
 
-          transformations[16] <- "Tokenized text (sentence level)"
+          transformations[18] <- "Tokenized text (sentence level)"
         }
       }
   }
 
   tryCatch({ #try saving results
     capture.output(unlist(transformations), file = paste(outdir, outname, sep = ""))},
-
+    
     warning = function(w){
 
-      print(warnings("To save list of transformations, you need to specify an output directory"))})
+      warning("To save a list of operations as a separate .txt file, you need to specify an output directory")})
+  
+  cat(paste(crayon::green("Textprep has succesfully completed!\n"), crayon::blue("Below is a list of transformations that were conducted.\n"), crayon::red("If you specified an outdir, this list has also been saved locally on your harddrive.\n")))
+  
+  return({{unlist(transformations)}})
 
-  return({{textdata}})
 }
 

@@ -36,6 +36,7 @@ Takes a text variable from a dataframe and runs a number of standard text prepro
 @import tibble
 @import tm
 @import magrittr
+@import crayon
 
 @examples
 \dontrun{
