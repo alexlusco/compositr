@@ -19,9 +19,6 @@ At minimum, ```textprep``` takes a dataframe with text variable. If you plan to 
 
 ```textprep``` takes two required arguments, and three optional ones. ```textdata``` takes the name of the dataframe containing your text data (as well as any metadata if you have any). ```textvar``` takes the name of your text variable (the column containing the text in your dataframe). ```language``` takes the language of your text, e.g., "english", "french", "german". Note that this argument only applies if you are planning on removing stopwords from your textdata. If you wish you to keep a record of the preprocesssing operations you applied to your data, you can have these saved in a .txt file on your computer. To do this, you will need to specify a directory (to where you want the .txt file to be saved). You can specify this directory using the ```outdir``` argument. The function defaults to saving this file with the name transformations.txt, but you can also change the name of this file if you wish using the ```outfile``` argument. In the future, the ```type``` argument will consist of multiple options, but at this time only consists of the default, "docs".
 
-## Compositr decision tree
-![](https://github.com/alexlusco/compositr/blob/master/compositr_decision_tree.png)
-
 ## Example application
 
 ```r
@@ -31,5 +28,8 @@ austen_books <- get_austen_data()
 
 austen_book_tokens <- textprep(austen_books, "text", language = "english", outdir = "~/Desktop/austen-project-folder")
 ```
+
+## Compositr decision tree
+![](https://github.com/alexlusco/compositr/blob/master/compositr_decision_tree.png)
 
 
