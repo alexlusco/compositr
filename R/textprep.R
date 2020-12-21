@@ -242,7 +242,8 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
           
           ask <- menu(c(glue("{colnames(textdata)}")), title = "What is the name of your document variable?")
           
-          if(ask == TRUE){
+          print("Casting text data into DocumentTermMatrix...")
+          
           textdata <- {{textdata}} %>%
             dplyr::count(.[[{{ask}}]], word) %>%
             dplyr::rename(document = {{ask}},
@@ -268,7 +269,6 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
           transformations[16] <- "Tokenized text (sentence level)"
         }
       }
-    }
   }
 
   tryCatch({ #try saving results

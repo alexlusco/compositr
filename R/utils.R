@@ -38,7 +38,7 @@ replace_misspelling <- function(x, ...){
   token_df <- textshape::split_token(dat, lower = FALSE)[,
                                                          lower := tolower(text)]
   
-  tokens <- grep('[a-z]', lazycleanr::na_removal(unique(token_df[['lower']])), value = TRUE)
+  tokens <- grep('[a-z]', na_removal(unique(token_df[['lower']])), value = TRUE)
   hits <- !hunspell::hunspell_check(tokens)
   
   misspelled <- tokens[hits]
@@ -52,7 +52,7 @@ replace_misspelling <- function(x, ...){
   
   fixed_df_a <- fixed_df[!is.na(replacement),][,
                                                is_cap := substring(text, 1, 1) %in% LETTERS][,
-                                                                                             final := ifelse(is_cap,  lazycleanr::upper_first_letter(replacement), replacement)][]
+                                                                                             final := ifelse(is_cap,  upper_first_letter(replacement), replacement)][]
   
   fixed_df_b <- fixed_df[is.na(replacement),][, final := text][]
   
