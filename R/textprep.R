@@ -208,7 +208,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
         if(ask == TRUE){
 
-          cat(glue::glue("Removing {language} stop words from text...\n"))
+          cat(paste(glue::glue("Removing {language} stop words from text..."), "\n"))
 
           stop.words <- tibble::tibble(word = tm::stopwords(language))
 
