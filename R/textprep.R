@@ -135,7 +135,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
   }
 
   if(type == "docs"){
-    ask <- askYesNo("Do you want to remove numbers?\n")
+    ask <- askYesNo("Do you want to remove numbers?")
 
     if(ask == TRUE){
 
