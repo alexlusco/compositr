@@ -36,4 +36,4 @@ austen_book_tokens <- textprep(austen_books, "text", language = "english", outdi
 
 ## Acknowledgements
 
-Special thanks to Rohan Alexander, Fernando Calderón, Tom Cardoso, Kevin Dick, Jamie Duncan, and Marcus Sibley for their excellent feedback and beta testing
+Special thanks to Rohan Alexander, Fernando Calderón, Tom Cardoso, Kevin Dick, Jamie Duncan, and Marcus Sibley for their excellent feedback and beta testing.
