@@ -2,8 +2,6 @@
 
 # library(compositr)
 
-*Work in progress*
-
 While computational text analysis is fun, preprocessing and tokenizing text data is generally not. Enter: ```r Library(compositr)```. Compositr is a one stop shop for all your text preprocessing and tokenization needs.
 
 ## To install and use compositr:
