@@ -4,15 +4,16 @@
 
 *Work in progress*
 
-While computational text analysis is fun, preprocessing and tokenizing text data is generally not. Enter: \Library(compositr). Compositr is a one stop shop for all your text preprocessing and tokenization needs.
+While computational text analysis is fun, preprocessing and tokenizing text data is generally not. Enter: ```Library(compositr)```. Compositr is a one stop shop for all your text preprocessing and tokenization needs.
 
 ## To install and use compositr:
-```install.packages("devtools")```
+```install.packages("devtools")``` 
+
 ```devtools::install_github("alexlusco/compositr")```
 
 ## Using compositr
 
-The library consists of two functions: ```textprep```, which does the work of preprocessing and tokenization, and ```get_austen_data```, which provides you with an example dataset to test the function on, pulled from \library(janeaustenr). 
+The library consists of two functions: ```textprep```, which does the work of preprocessing and tokenization, and ```get_austen_data```, which provides you with an example dataset to test the function on, pulled from ```library(janeaustenr)```. 
 
 At minimum, ```textprep``` takes a dataframe with text variable. If you plan to cast your text data as a DocumentTermMatrix, you'll also need a document IDs variable (e.g., the name of the book the text is from). The exact name of these variables does not matter. ```textprep``` works by asking you a series of questions in the console about what you want to do to your text data. One of these questions requires a selection from a list, the rest are yes/no questions. The function can be used for basic cleaning operations, for cleaning and tokenization, or just tokenization. What the function does will depend on how you answer the prompts in the console.
 
@@ -20,3 +21,15 @@ At minimum, ```textprep``` takes a dataframe with text variable. If you plan to 
 
 ## Compositr decision tree
 ![](https://github.com/alexlusco/compositr/blob/master/compositr_decision_tree.png)
+
+## Example application
+
+```{r}
+library(compositr)
+
+austen_books <- get_austen_data()
+
+austen_book_tokens <- textprep(austen_books, "text", language = "english", outdir = "~/Desktop/austen-project-folder")
+```
+
+
