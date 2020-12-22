@@ -30,6 +30,8 @@ textprep_tree()
 austen_book_tokens <- textprep(austen_books, "text", language = "english")
 ```
 
+![](https://github.com/alexlusco/compositr/blob/master/compositr_demonstration.gif)
+
 ## Decision tree
 ![](https://github.com/alexlusco/compositr/blob/master/compositr_decision_tree.png)
 
