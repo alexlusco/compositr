@@ -27,7 +27,7 @@ austen_books <- get_austen_data()
 
 textprep_tree()
 
-austen_book_tokens <- textprep(austen_books, "text", language = "english")
+austen_book_tokens <- textprep(textdata = austen_books, textvar = "text", language = "english")
 ```
 
 ![](https://github.com/alexlusco/compositr/blob/master/compositr_demonstration.gif)
