@@ -2,7 +2,9 @@
 
 # library(compositr)
 
-While *analyzing* text data can be a lot fun, *preprocessing* text data is generally not. Enter: library(compositr). Compositr is a one stop shop for all your text preprocessing needs. In a single, painless interactive session, compositr will clean your data up for analysis, and can even convert your data into various formats, such a DocumentFeatureMatrix. The library works by integrating a number of incredible R libraries behind the scenes, including ![tidytext](https://cran.r-project.org/web/packages/tidytext/index.html), ![texclean](https://cran.r-project.org/web/packages/textclean/index.html), and ![tm](https://cran.r-project.org/web/packages/tm/index.html), among others. People who are new to computational text analysis will find compositr especially useful.
+While *analyzing* text data can be a lot fun, *preprocessing* text data is generally not. Enter: library(compositr). 
+
+Compositr is a one stop shop for all your text preprocessing needs. In a single, painless interactive session, compositr will clean your data up for analysis, and can even convert your data into various formats, such a DocumentFeatureMatrix. The library works by integrating a number of incredible R libraries behind the scenes, including ![tidytext](https://cran.r-project.org/web/packages/tidytext/index.html), ![texclean](https://cran.r-project.org/web/packages/textclean/index.html), and ![tm](https://cran.r-project.org/web/packages/tm/index.html), among others. People who are new to computational text analysis will find compositr especially useful.
 
 ## Installation
 ```r
