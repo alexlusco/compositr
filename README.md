@@ -12,7 +12,7 @@ devtools::install_github("alexlusco/compositr")
 
 ## Using compositr
 
-Library(compositr) consists of three functions: ```textprep()```, which does the work of preprocessing and tokenization, ```textprep_tree()```, which generates a visual representation of textprep as a decision tree, and ```get_austen_data()```, which provides you with an example dataset to test the function on, pulled from library(janeaustenr). 
+Library(compositr) consists of three functions: ```textprep()```, which does the work of preprocessing and tokenization, ```textprep_tree()```, which generates a visual representation of textprep as a decision tree, and ```get_austen_data()```, which provides you with an example dataset to test the function on (a dataframe of Jane Austen books, pulled from ![janeaustenr](https://cran.r-project.org/web/packages/janeaustenr/index.html). 
 
 At minimum, ```textprep()``` takes a dataframe with a text variable. If you plan to cast your text data as a DocumentTermMatrix or DocumentFeatureMatrix, you'll also need a document IDs variable (e.g., the name of the book the text is from). The exact name of these variables does not matter. ```textprep()``` works by asking you a series of questions in the console about what you want to do to your text data. One of these questions requires a selection from a list, the rest are yes/no questions. The function can be used for basic cleaning operations, for cleaning and tokenization, or just tokenization. What the function does will depend on how you answer the prompts in the console.
 
