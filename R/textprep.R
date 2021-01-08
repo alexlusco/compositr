@@ -40,10 +40,6 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
   
   Sys.sleep(5)
   
-  cat(crayon::green("Let's get started!\n\n"))
-  
-  Sys.sleep(2)
-  
   if(type == "docs"){
     ask <- askYesNo("Do you want to remove non-UTF8 characters?")
     
@@ -191,16 +187,13 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
   ask <- askYesNo("Do you want to tokenize your data?")
 
     if(ask == TRUE){
-      ask <- askYesNo("Do you want to tokenize at the word level? (If you prefer sentence level, type 'no')")
+      
+      cat("Tokenizing text (word level)...\n")
+      
+      textdata <- {{textdata}} %>%
+        tidytext::unnest_tokens(word, {{textvar}}, token = "words", to_lower = FALSE) #tokenizer (words)
 
-      if(ask == TRUE){
-
-        cat("Tokenizing text (word level)...\n")
-
-        textdata <- {{textdata}} %>%
-          tidytext::unnest_tokens(word, {{textvar}}, token = "words") #tokenizer (words)
-
-        transformations[12] <- "Tokenized text (word level)"
+      transformations[12] <- "Tokenized text (word level)"
       }
 
       if(ask == TRUE){
@@ -215,7 +208,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
           textdata <- {{textdata}} %>%
             dplyr::anti_join(stop.words, by = "word") #remove stopwords in specified language
 
-          transformations[12] <- glue::glue("Removed {language} stopwords")
+          transformations[13] <- glue::glue("Removed {language} stopwords")
         }
       }
 
@@ -229,7 +222,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
           textdata <- {{textdata}} %>%
             dplyr::mutate(word = SnowballC::wordStem(word)) #stem words
 
-          transformations[13] <- "Stemmed words using SnowballC:: wordstemming algorithm"
+          transformations[14] <- "Stemmed words using SnowballC:: wordstemming algorithm"
         }
 
         else{
@@ -242,7 +235,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
             textdata <- {{textdata}} %>%
               dplyr::mutate(word = textstem::lemmatize_words(word)) #lemmatize words
 
-            transformations[14] <- "Lemmatized words using textstem:: lemmatization algorithm"
+            transformations[15] <- "Lemmatized words using textstem:: lemmatization algorithm"
 
           }
         }
@@ -265,7 +258,7 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
                    value = n) %>%
             tidytext::cast_dtm(document, term, value)
           
-          transformations[15] <- "Cast text data as DocumentTermMatrix"
+          transformations[16] <- "Cast text data as DocumentTermMatrix"
         }
         
         else({
@@ -288,19 +281,6 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
             transformations[17] <- "Cast text data as DocumentFeatureMatrix"
           }
         })
-        }
-      }
-
-      else{
-        ask <- askYesNo("Do you want to tokenize at the sentence level?")
-
-        if(ask == TRUE){
-
-          textdata <- {{textdata}} %>%
-            tidytext::unnest_tokens(sentences, {{textvar}}, token = "sentences") #tokenizer (sentences)
-
-          transformations[18] <- "Tokenized text (sentence level)"
-        }
       }
   }
 

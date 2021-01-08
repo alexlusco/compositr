@@ -31,7 +31,6 @@ return(DiagrammeR::grViz("digraph flowchart {
       tab15 [label = '@@15']
       tab16 [label = '@@16']
       tab17 [label = '@@17']
-      tab18 [label = '@@18']
       
       # edge definitions with the node IDs
       tab1 -> tab2 -> tab3 -> tab4;
@@ -44,14 +43,13 @@ return(DiagrammeR::grViz("digraph flowchart {
       tab9 -> tab10;
       tab10 -> tab11;
       tab11 -> tab12;
-      tab11 -> tab17;
       tab12 -> tab13;
       tab13 -> tab14;
       tab13 -> tab15;
       tab14 -> tab16;
       tab15 -> tab16;
-      tab14 -> tab18;
-      tab15 -> tab18
+      tab14 -> tab17;
+      tab15 -> tab17
       
       }
       
@@ -71,7 +69,6 @@ return(DiagrammeR::grViz("digraph flowchart {
       [14]: 'Stem words'
       [15]: 'Lemmatize words'
       [16]: 'Cast data as DocumentTermMatrix'
-      [17]: 'Sentence tokenization'
-      [18]: 'Cast data as DocumentFeatureMatrix'
+      [17]: 'Cast data as DocumentFeatureMatrix'
       "))
 }

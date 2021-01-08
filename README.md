@@ -1,4 +1,4 @@
-![](https://github.com/alexlusco/compositr/blob/master/compositor.jpg)
+![](https://github.com/alexlusco/compositr/blob/master/img/compositor.jpg)
 
 # library(compositr)
 
@@ -38,10 +38,10 @@ textprep_tree()
 austen_book_tokens <- textprep(textdata = austen_books, textvar = "text", language = "english")
 ```
 
-![](https://github.com/alexlusco/compositr/blob/master/compositr_demonstration.gif)
+![](https://github.com/alexlusco/compositr/blob/master/img/compositr_demonstration.gif)
 
 ## Decision tree
-![](https://github.com/alexlusco/compositr/blob/master/compositr_decision_tree.png)
+![](https://github.com/alexlusco/compositr/blob/master/img/compositr_decision_tree.png)
 
 ## Acknowledgements
 
