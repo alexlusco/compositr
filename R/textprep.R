@@ -291,9 +291,9 @@ textprep <- function(textdata, textvar, type = "docs", language = "english", out
 
       warning("To save a list of operations as a separate .txt file, you need to specify an output directory")})
   
-  cat(paste(crayon::green("Textprep is now complete!\n"), crayon::blue("Below is a list of transformations that were conducted:\n"), sep = ""))
+  cat(paste(crayon::green("Textprep is now complete!\n"), sep = ""))
   
-  return({{unlist(transformations)}})
+  return({{textdata}})
 
 }
 
